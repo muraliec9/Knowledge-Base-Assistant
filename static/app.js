@@ -7,9 +7,10 @@ const escapeHtml = value => value.replace(/[&<>'"]/g, character => ({'&':'&amp;'
 function addMessage(text, role, sources = []) {
   const item = document.createElement('article'); item.className = `message ${role}`;
   item.innerHTML = `<div>${escapeHtml(text).replace(/\n/g, '<br>')}</div>`;
-  if (sources.length) {
+  const highConfidenceSources = sources.filter(source => source.score >= 0.75);
+  if (highConfidenceSources.length) {
     const list = document.createElement('div'); list.className = 'sources';
-    list.innerHTML = '<strong>Sources</strong>' + sources.map((s, i) => `<details><summary>[${i + 1}] ${escapeHtml(s.title)} <em>${Math.round(s.score * 100)}% match</em></summary><p>${escapeHtml(s.excerpt)}</p></details>`).join('');
+    list.innerHTML = '<strong>Sources</strong>' + highConfidenceSources.map((s, i) => `<details><summary>[${i + 1}] ${escapeHtml(s.title)} <em>${Math.round(s.score * 100)}% match</em></summary><p>${escapeHtml(s.excerpt)}</p></details>`).join('');
     item.append(list);
   }
   chat.append(item); chat.scrollTop = chat.scrollHeight;

@@ -71,7 +71,7 @@ def status() -> dict[str, int | bool]:
 
 @app.post("/api/chat")
 def chat(request: ChatRequest) -> dict[str, object]:
-    sources = knowledge_base.retrieve(request.question)
+    sources = [source for source in knowledge_base.retrieve(request.question) if source.score >= 0.75]
     return {"answer": synthesise(request.question, request.history, sources), "sources": sources_payload(sources)}
 
 
