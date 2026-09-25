@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlas — Knowledge Assistant</title><link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main>
+    <header><div class="eyebrow">Knowledge Base <span>ASSISTANT</span></div><h1>Ask Atlas</h1><p>Your trusted guide for finding clear, reliable answers across policies, processes, product information, and everyday support guidance.</p></header>
+    <section id="chat" aria-live="polite"><div class="message assistant">Hello. Ask a question about policies, processes, products, or onboarding.</div></section>
+    <form id="ask-form"><textarea id="question" placeholder="e.g. How should I report a suspected compliance concern?" rows="2" required></textarea><button>Ask question <span>↗</span></button></form>
+    <section class="upload"><label for="file">Add a .md or .txt knowledge document</label><input id="file" type="file" accept=".md,.txt"><span id="upload-result"></span></section>
+  </main><script src="/static/app.js"></script>
+</body></html>

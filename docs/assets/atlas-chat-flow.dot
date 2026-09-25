@@ -1,0 +1,38 @@
+digraph AtlasChatFlow {
+  graph [rankdir=TB, splines=ortho, nodesep=0.35, ranksep=0.48, pad=0.2, bgcolor="white"];
+  node [fontname="Arial", fontsize=10, color="#5B8FC9", penwidth=1.15, margin="0.12,0.08"];
+  edge [fontname="Arial", fontsize=9, color="#6E7D88", penwidth=1.05, arrowsize=0.7];
+
+  start [label="Start", shape=oval, style="filled", fillcolor="#DFF5E9", color="#32865B", fontcolor="#174B3A"];
+  question [label="User enters a question\nin Atlas", shape=box, style="filled", fillcolor="#EAF3FF"];
+  valid [label="Is the question valid?", shape=diamond, style="filled", fillcolor="#FFF2CC", color="#D6A129", width=2.0, height=0.9];
+  invalid [label="Show validation message\n(3–2,000 characters)", shape=box, style="filled", fillcolor="#EAF3FF"];
+  request [label="Atlas sends question and\nrecent chat history to /api/chat", shape=box, style="filled", fillcolor="#EAF3FF"];
+  retrieve [label="Hybrid retriever searches\nknowledge-base passages", shape=box, style="filled", fillcolor="#EAF3FF"];
+  chroma [label="ChromaDB\nvector store", shape=cylinder, style="filled", fillcolor="#E6F4EA", color="#4C956C", fontcolor="#174B3A"];
+  rank [label="Combine vector similarity\nwith keyword-aware ranking", shape=box, style="filled", fillcolor="#EAF3FF"];
+  sources [label="Are indexed source\npassages available?", shape=diamond, style="filled", fillcolor="#FFF2CC", color="#D6A129", width=2.2, height=0.95];
+  noanswer [label="Return grounded no-answer message", shape=box, style="filled", fillcolor="#EAF3FF"];
+  select [label="Select top evidence passages\nwith document citations", shape=box, style="filled", fillcolor="#EAF3FF"];
+  llm [label="Is an LLM API key\nconfigured?", shape=diamond, style="filled", fillcolor="#FFF2CC", color="#D6A129", width=2.0, height=0.9];
+  extract [label="Return the best source passage\n(extractive grounded answer)", shape=box, style="filled", fillcolor="#EAF3FF"];
+  prompt [label="Build constrained prompt with\nquestion and evidence only", shape=box, style="filled", fillcolor="#EAF3FF"];
+  model [label="OpenAI chat model\nlow-temperature synthesis", shape=box, style="filled", fillcolor="#EAF3FF"];
+  answer [label="Return answer with cited\nsource excerpts", shape=box, style="filled", fillcolor="#EAF3FF"];
+  end [label="Chat complete", shape=oval, style="filled", fillcolor="#DFF5E9", color="#32865B", fontcolor="#174B3A"];
+
+  start -> question -> valid;
+  valid -> invalid [label="No"];
+  invalid -> end;
+  valid -> request [label="Yes"];
+  request -> retrieve -> chroma -> rank -> sources;
+  sources -> noanswer [label="No"];
+  noanswer -> answer;
+  sources -> select [label="Yes"];
+  select -> llm;
+  llm -> extract [label="No"];
+  llm -> prompt [label="Yes"];
+  prompt -> model -> answer;
+  extract -> answer;
+  answer -> end;
+}

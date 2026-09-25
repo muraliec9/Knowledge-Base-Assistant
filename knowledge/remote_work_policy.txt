@@ -1,0 +1,51 @@
+# Remote Work Policy
+
+Policy ID: HR-REMOTE-004
+Effective Date: January 1, 2026
+Applies To: Full-time and part-time employees
+
+## 1. Eligibility
+
+Employees may work remotely up to three days per week with manager approval.
+
+Employees in their first 30 days of employment are not eligible for regular remote work unless an exception is approved by Human Resources.
+
+## 2. Core Hours
+
+All employees must be available between 10:00 AM and 3:00 PM local time on their scheduled working days.
+
+Employees may arrange the remaining working hours flexibly with their manager.
+
+## 3. Equipment
+
+The company provides one laptop and one external monitor to eligible employees.
+
+Employees are responsible for maintaining a reliable internet connection.
+
+Additional equipment requires manager approval and may be subject to budget limitations.
+
+## 4. Remote Work Location
+
+Employees must work from their registered home address unless they receive written approval for another location.
+
+Working from another country requires approval from both the employee's manager and Human Resources.
+
+## 5. Security
+
+Employees must use the company VPN when accessing internal systems from public networks.
+
+Company devices must use full-disk encryption.
+
+Employees must not allow family members or other unauthorized individuals to use company devices.
+
+## 6. Exceptions
+
+Exceptions to this policy may be granted for medical, accessibility, or business reasons.
+
+All exceptions must be documented through Human Resources.
+
+## 7. Violations
+
+Repeated violations may result in suspension of remote-work privileges.
+
+Serious security violations may result in disciplinary action under the company's information-security policy.
